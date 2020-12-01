@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs'); %>
+  <body>
+    <%- include('./partials/nav.ejs'); %>
+
+    <div class="container cover-section">
+      <h1>Create a new blog</h1>
+      <div class="automargin-section">
+        <form action="/blogs" method="POST">
+          <label for="title">Title: </label>
+          <br />
+          <input
+            type="text"
+            id="title"
+            class="text-input"
+            name="title"
+            required
+            autocomplete="off"
+          />
+          <br /><br />
+          <label for="snippet">Blog snippet: </label>
+          <br />
+          <input
+            type="text"
+            id="snippet"
+            class="text-input"
+            name="snippet"
+            required
+            autocomplete="off"
+          />
+          <br /><br />
+          <label for="blog-body">Blog body: </label>
+          <br />
+          <textarea
+            id="blog-body"
+            rows="10"
+            class="text-input"
+            name="body"
+            required
+            autocomplete="off"
+          ></textarea>
+          <br /><br />
+          <button
+            class="btn"
+            type="submit"
+            onclick="this.classList.toggle('btn-loading')"
+          >
+            <span class="btn-text">Create</span>
+          </button>
+        </form>
+      </div>
+    </div>
+    <%- include('./partials/footer.ejs'); %>
+  </body>
+</html>

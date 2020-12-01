@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs'); %> <%- include('./partials/nav.ejs'); %>
+  <body>
+    <div class="container">
+      <h1>All Blogs</h1>
+      <div class="automargin-section cover-section">
+        <% if (blogs.length > 0) { %> <% blogs.forEach(blog => { %>
+        <div class="card">
+          <a href="/blogs/<%= blog._id %>">
+          <h2><%- blog.title %></h2>
+          <p><%- blog.snippet %></p
+          </a>
+        </div>
+        <!-- <hr class="thin full-width" /> -->
+        <% }) %> <% } else { %>
+        <p>Nothing to show here.</p>
+        <% } %>
+      </div>
+    </div>
+    <%- include('./partials/footer.ejs'); %>
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include('./partials/head.ejs'); %>
+  <body>
+    <%- include('./partials/nav.ejs'); %>
+
+    <div class="container cover-section">
+      <h1><%= blog.title %></h1>
+      <div class="automargin-section">
+        <p><%- blog.body %></p>
+        <div
+          style="position: fixed; bottom: 5rem; right: 0.5rem; z-index: 1010"
+        >
+          <a class="btn btn-red" href="#delete-confirmation">
+            <span class="material-icons noselect">delete_outline</span>
+          </a>
+        </div>
+        <div class="modal-overlay" id="delete-confirmation">
+          <div class="modal">
+            Are you sure you want to delete this post?
+            <a href="#" class="modal-close">&times;</a>
+            <br /><br /><br />
+            <a
+              data-doc="<%= blog._id %>"
+              class="btn btn-red"
+              id="delete"
+              onclick="this.classList.toggle('btn-loading')"
+            >
+              <span class="btn-text">Yes, delete</span>
+            </a>
+            <a href="#" class="btn btn-pill btn-secondary">No</a>
+            <br />
+          </div>
+        </div>
+      </div>
+    </div>
+    <%- include('./partials/footer.ejs'); %>
+
+    <script>
+      const trashcan = document.querySelector("#delete");
+      trashcan.addEventListener("click", () => {
+        window.location.href = "/";
+        const endpoint = `/blogs/${trashcan.dataset.doc}`;
+
+        fetch(endpoint, {
+          method: "DELETE",
+        })
+          .then((response) => {
+            response.json();
+          })
+          .then((data) => {
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      });
+    </script>
+  </body>
+</html>
